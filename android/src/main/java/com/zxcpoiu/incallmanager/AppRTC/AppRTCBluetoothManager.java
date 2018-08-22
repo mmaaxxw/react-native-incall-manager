@@ -282,7 +282,11 @@ public class AppRTCBluetoothManager {
     if (bluetoothState == State.UNINITIALIZED) {
       return;
     }
-    unregisterReceiver(bluetoothHeadsetReceiver);
+    try {
+      unregisterReceiver(bluetoothHeadsetReceiver);
+    } catch (IllegalArgumentException exception){
+      Log.e(TAG, "IllegalArgumentException bluetoothHeadsetReceiver");
+    }
     cancelTimer();
     if (bluetoothHeadset != null) {
       bluetoothAdapter.closeProfileProxy(BluetoothProfile.HEADSET, bluetoothHeadset);
