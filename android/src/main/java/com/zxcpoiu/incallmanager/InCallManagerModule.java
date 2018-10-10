@@ -1729,23 +1729,25 @@ public class InCallManagerModule extends ReactContextBaseJavaModule implements L
      */
     @Deprecated
     private boolean hasWiredHeadset() {
-        return audioManager.isWiredHeadsetOn();
-//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-//            return audioManager.isWiredHeadsetOn();
-//        } else {
-//            final AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_ALL);
-//            for (AudioDeviceInfo device : devices) {
-//                final int type = device.getType();
-//                if (type == AudioDeviceInfo.TYPE_WIRED_HEADSET) {
-//                    Log.d(TAG, "hasWiredHeadset: found wired headset");
-//                    return true;
-//                } else if (type == AudioDeviceInfo.TYPE_USB_DEVICE) {
-//                    Log.d(TAG, "hasWiredHeadset: found USB audio device");
-//                    return true;
-//                }
-//            }
-//            return false;
-//        }
+        if(return audioManager.isWiredHeadsetOn()){
+            return true;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return audioManager.isWiredHeadsetOn();
+        } else {
+            final AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_ALL);
+            for (AudioDeviceInfo device : devices) {
+                final int type = device.getType();
+                if (type == AudioDeviceInfo.TYPE_WIRED_HEADSET) {
+                    Log.d(TAG, "hasWiredHeadset: found wired headset");
+                    return true;
+                } else if (type == AudioDeviceInfo.TYPE_USB_DEVICE) {
+                    Log.d(TAG, "hasWiredHeadset: found USB audio device");
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 
