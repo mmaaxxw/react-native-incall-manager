@@ -1729,7 +1729,7 @@ public class InCallManagerModule extends ReactContextBaseJavaModule implements L
      */
     @Deprecated
     private boolean hasWiredHeadset() {
-        if(return audioManager.isWiredHeadsetOn()){
+        if(audioManager.isWiredHeadsetOn()){
             return true;
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
