@@ -862,6 +862,7 @@ RCT_EXPORT_METHOD(getIsWiredHeadsetPluggedIn:(RCTPromiseResolveBlock)resolve
                                                @"hasMic": @YES,
                                                @"deviceName": AVAudioSessionPortHeadsetMic,
                                            }];
+                        [self updateAudioRoute];
                     } else if ([self checkAudioRoute:@[AVAudioSessionPortHeadphones]
                                            routeType:@"output"]) {
                         [self sendEventWithName:@"WiredHeadset"
@@ -870,6 +871,7 @@ RCT_EXPORT_METHOD(getIsWiredHeadsetPluggedIn:(RCTPromiseResolveBlock)resolve
                                                @"hasMic": @NO,
                                                @"deviceName": AVAudioSessionPortHeadphones,
                                            }];
+                        [self updateAudioRoute];
                     }
                     break;
                 case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
@@ -881,6 +883,7 @@ RCT_EXPORT_METHOD(getIsWiredHeadsetPluggedIn:(RCTPromiseResolveBlock)resolve
                                                @"hasMic": @NO,
                                                @"deviceName": @"",
                                            }];
+                        [self updateAudioRoute];
                     }
                     break;
                 case AVAudioSessionRouteChangeReasonCategoryChange:
